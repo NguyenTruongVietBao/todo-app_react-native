@@ -61,7 +61,7 @@ const App = () => {
 
   const filteredTodo = listTodo.filter((todo) =>
     todo.title.toLowerCase().includes(searchQuery.toLowerCase())
-  ); // Filter the todos based on the search query
+  );
 
   return (
     <View style={styles.container}>
