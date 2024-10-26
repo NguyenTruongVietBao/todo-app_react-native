@@ -41,7 +41,7 @@ const App = () => {
   const handleDeleteTodo = (id: number) => {
     Alert.alert(
       "Delete Todo",
-      "Are you sure you want to delete this todo?",
+      "Are you sure you want to delete this todo ?",
       [
         {
           text: "Cancel",
