@@ -10,24 +10,23 @@ import {
   TouchableOpacity,
 } from "react-native";
 import AntDesign from "@expo/vector-icons/AntDesign";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { NavigationContainer } from "@react-navigation/native";
 import Iphone13Frame from "../../Iphone13Frame";
-import { globalStyles, INTER_BLACK } from "../../utils/globalStyles";
-
+import { NavigationProp, useNavigation } from "@react-navigation/native";
 interface TodoProps {
   id: number;
   title: string;
 }
 
-export default function Home(props: any) {
+export default function Home() {
   const [todo, setTodo] = useState("");
   const [searchQuery, setSearchQuery] = useState(""); // State to track search query
   const [listTodo, setListTodo] = useState<TodoProps[]>([
     { id: 1, title: "Learning React Native" },
-    { id: 2, title: "Designing a UI" },
+    { id: 2, title: "Designing a UI UX" },
     { id: 3, title: "Implementing features" },
   ]);
+
+  const navigation: NavigationProp<RootStackParamList> = useNavigation();
 
   function randomId(min: number, max: number) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -49,7 +48,6 @@ export default function Home(props: any) {
       [
         {
           text: "Cancel",
-          onPress: () => console.log("Canceled Todo"),
           style: "cancel",
         },
         {
@@ -66,7 +64,7 @@ export default function Home(props: any) {
   const filteredTodo = listTodo.filter((todo) =>
     todo.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
-  const navigation = props.navigation;
+
   return (
     <View style={styles.container}>
       <Iphone13Frame>
@@ -105,11 +103,36 @@ export default function Home(props: any) {
               return (
                 <TouchableOpacity
                   onLongPress={() => alert("long press")}
-                  onPress={() => handleDeleteTodo(item.id)}
                   style={styles.listTodo}
                 >
-                  <Text>{item.title}</Text>
-                  <AntDesign name="close" size={24} color="black" />
+                  <View>
+                    <Text>{item.title}</Text>
+                  </View>
+                  <View
+                    style={{
+                      flexDirection: "row",
+                      alignItems: "center",
+                      gap: 10,
+                    }}
+                  >
+                    <AntDesign
+                      name="eyeo"
+                      size={24}
+                      color="black"
+                      onPress={() =>
+                        navigation.navigate("detail", {
+                          id: item.id,
+                          title: item.title,
+                        })
+                      }
+                    />
+                    <AntDesign
+                      name="close"
+                      size={24}
+                      color="black"
+                      onPress={() => handleDeleteTodo(item.id)}
+                    />
+                  </View>
                 </TouchableOpacity>
               );
             }}
@@ -121,10 +144,6 @@ export default function Home(props: any) {
           <Button
             title="Go to about"
             onPress={() => navigation.navigate("about")}
-          />
-          <Button
-            title="Go to detail"
-            onPress={() => navigation.navigate("detail")}
           />
         </View>
       </Iphone13Frame>

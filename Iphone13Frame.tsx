@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
   notch: {
     position: "absolute",
     width: 158,
-    height: 34,
+    height: 33,
     backgroundColor: "#000",
     borderBottomLeftRadius: 25,
     borderBottomRightRadius: 25,

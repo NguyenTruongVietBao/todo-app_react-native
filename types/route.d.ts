@@ -1,6 +1,6 @@
 type RootStackParamList = {
     'home': undefined;
-    'detail': undefined;
+    'detail': {id: number, title: string} | undefined;
     'about': undefined;
 }
 

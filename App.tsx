@@ -16,7 +16,6 @@ const App = () => {
     "inter-black_font": require("./assets/fonts/Inter-Black.ttf"),
     "playwrite-font": require("./assets/fonts/PlaywriteGBS-VariableFont_wght.ttf"),
   });
-
   useEffect(() => {
     if (loaded || error) {
       SplashScreen.hideAsync();
