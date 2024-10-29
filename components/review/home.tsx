@@ -10,13 +10,13 @@ import {
   TouchableOpacity,
 } from "react-native";
 import AntDesign from "@expo/vector-icons/AntDesign";
-import Iphone13Frame from "../../Iphone13Frame";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
+
+
 interface TodoProps {
   id: number;
   title: string;
 }
-
 export default function Home() {
   const [todo, setTodo] = useState("");
   const [searchQuery, setSearchQuery] = useState(""); // State to track search query
@@ -66,20 +66,19 @@ export default function Home() {
   );
 
   return (
-    <View style={styles.container}>
-      <Iphone13Frame>
+      <View style={styles.container}>
         {/* header */}
-        <View style={styles.headerContainer}>
+        <View>
           <Text style={styles.headerTitle}>TODO app</Text>
         </View>
 
         {/* form */}
         <View style={styles.formContainer}>
           <TextInput
-            placeholder="Type your work here"
-            value={todo}
-            onChangeText={setTodo}
-            style={styles.textInput}
+              placeholder="Type your work here"
+              value={todo}
+              onChangeText={setTodo}
+              style={styles.textInput}
           />
           <Button title="Add" onPress={handleAddTodo} />
         </View>
@@ -87,67 +86,66 @@ export default function Home() {
         {/* search bar */}
         <View style={styles.formContainer}>
           <TextInput
-            placeholder="Search ToDo"
-            value={searchQuery}
-            onChangeText={setSearchQuery} // Update the search query
-            style={styles.textInput}
+              placeholder="Search ToDo"
+              value={searchQuery}
+              onChangeText={setSearchQuery} // Update the search query
+              style={styles.textInput}
           />
         </View>
 
         {/* list todo */}
         <View style={styles.listTodoContainer}>
           <FlatList
-            data={filteredTodo}
-            keyExtractor={(item) => String(item.id)}
-            renderItem={({ item }) => {
-              return (
-                <TouchableOpacity
-                  onLongPress={() => alert("long press")}
-                  style={styles.listTodo}
-                >
-                  <View>
-                    <Text>{item.title}</Text>
-                  </View>
-                  <View
-                    style={{
-                      flexDirection: "row",
-                      alignItems: "center",
-                      gap: 10,
-                    }}
-                  >
-                    <AntDesign
-                      name="eyeo"
-                      size={24}
-                      color="black"
-                      onPress={() =>
-                        navigation.navigate("detail", {
-                          id: item.id,
-                          title: item.title,
-                        })
-                      }
-                    />
-                    <AntDesign
-                      name="close"
-                      size={24}
-                      color="black"
-                      onPress={() => handleDeleteTodo(item.id)}
-                    />
-                  </View>
-                </TouchableOpacity>
-              );
-            }}
+              data={filteredTodo}
+              keyExtractor={(item) => String(item.id)}
+              renderItem={({ item }) => {
+                return (
+                    <TouchableOpacity
+                        onLongPress={() => alert("long press")}
+                        style={styles.listTodo}
+                    >
+                      <View>
+                        <Text>{item.title}</Text>
+                      </View>
+                      <View
+                          style={{
+                            flexDirection: "row",
+                            alignItems: "center",
+                            gap: 10,
+                          }}
+                      >
+                        <AntDesign
+                            name="eyeo"
+                            size={24}
+                            color="black"
+                            onPress={() =>
+                                navigation.navigate("detail", {
+                                  id: item.id,
+                                  title: item.title,
+                                })
+                            }
+                        />
+                        <AntDesign
+                            name="close"
+                            size={24}
+                            color="black"
+                            onPress={() => handleDeleteTodo(item.id)}
+                        />
+                      </View>
+                    </TouchableOpacity>
+                );
+              }}
           />
         </View>
 
         {/* navigate */}
         <View>
           <Button
-            title="Go to about"
-            onPress={() => navigation.navigate("about")}
+              title="Go to about"
+              onPress={() => navigation.navigate("about")}
           />
         </View>
-      </Iphone13Frame>
-    </View>
+      </View>
   );
 }
 
@@ -156,16 +154,13 @@ const styles = StyleSheet.create({
     flex: 1, // Takes up the full available space
     justifyContent: "center", // Centers the content vertically in the container
     alignItems: "center", // Centers the content horizontally in the container
-    backgroundColor: "#f8dada", // Sets the background color of the container
   },
-  headerContainer: {}, // An empty container for the header (can be expanded later if needed)
   headerTitle: {
     backgroundColor: "orange", // Sets the background color of the header to orange
     width: 320, // Sets the width of the header
     height: "auto", // Auto-adjusts the height based on content
     paddingVertical: 15, // Adds vertical padding inside the header
     textAlign: "center", // Centers the text inside the header
-    color: "#000", // Sets the text color to black
     fontWeight: "bold", // Makes the text bold
     fontSize: 30, // Sets the font size of the header title to 30
   },
@@ -176,7 +171,7 @@ const styles = StyleSheet.create({
   },
   listTodoContainer: {
     flex: 1, // Expands to take up the available vertical space
-    width: 300, // Sets a fixed width for the container
+    width: "100%", // Sets a fixed width for the container
     alignItems: "center", // Centers the list items horizontally
   },
   textInput: {
@@ -198,5 +193,5 @@ const styles = StyleSheet.create({
     alignItems: "center", // Centers the content horizontally inside the todo item
     justifyContent: "space-between", // Distributes space between children inside the todo item
     flexDirection: "row", // Arranges the children vertically inside the todo item
-  },
+  }
 });

@@ -1,25 +1,25 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { globalStyles, INTER_BLACK } from "../../utils/globalStyles";
-import Iphone13Frame from "../../Iphone13Frame";
+import {globalStyles} from "../../utils/globalStyles";
 
 export default function About() {
   return (
-    <View>
-      <Iphone13Frame>
-        <Text style={[styles.container, globalStyles.playwrite_font]}>
+    <View style={styles.container}>
+        <Text style={[styles.text, globalStyles.playwrite_font]}>
           About Page
         </Text>
-        <Text style={[styles.container, globalStyles.inter_font]}>
-          About Page
-        </Text>
-      </Iphone13Frame>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    fontSize: 30,
+      flex: 1, // Takes up the full available space
+      justifyContent: "center", // Căn up down
+      alignItems: "center", // Căn left right
+      backgroundColor: "#f8dada",
   },
+    text: {
+        fontSize: 30,
+    }
 });
